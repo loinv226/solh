@@ -9,14 +9,17 @@ fi
 START_EPOCH=$1
 END_EPOCH=$2
 
-if [ -z "$START_EPOCH" ]; then
-  echo "START_EPOCH is empty"
-  exit 1
+# Check if the epoch number is a number
+re='^[0-9]+$'
+
+if ! [[ $START_EPOCH =~ $re ]]; then
+    echo "Start epoch number is not a number"
+    exit 1
 fi
 
-if [ -z "$END_EPOCH" ]; then
-  echo "END_EPOCH is empty"
-  exit 1
+if ! [[ $END_EPOCH =~ $re ]]; then
+    echo "End epoch number is not a number"
+    exit 1
 fi
 
 if [ $START_EPOCH -gt $END_EPOCH ]; then
