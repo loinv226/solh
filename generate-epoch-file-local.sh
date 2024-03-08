@@ -8,7 +8,7 @@ fi
 
 START_EPOCH=$1
 END_EPOCH=$2
-INDEX_PATH=$2
+INDEX_PATH=$3
 
 # Check if the epoch number is a number
 re='^[0-9]+$'
