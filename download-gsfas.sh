@@ -1,7 +1,5 @@
 #!/bin/bash
 
-#!/bin/bash
-
 # Check if there is an epoch number provided
 if [ $# -eq 0 ]; then
     echo "No epoch number provided"
@@ -41,28 +39,34 @@ if [ -z "$INDEX_PATH" ]; then
 fi
 
 # Create the directory if need
+OUTDIR=gsfa
+mkdir -p $OUTDIR
 mkdir -p $INDEX_PATH
-
-INDEXES=(cid-to-offset slot-to-cid sig-to-cid cid-to-offset)
 
 # download indexes each epoch
 for EPOCH in $(seq $START_EPOCH $END_EPOCH); do
 
-    echo "Downloading indexes at epoch $EPOCH"
+    echo "Downloading gsfa at epoch $EPOCH"
 
+    # get cid
     EPOCH_CID=$(curl -fs https://files.old-faithful.net/$EPOCH/epoch-$EPOCH.cid)
     if [ $? -ne 0 ]; then
         echo "Failed to get cid at epoch $EPOCH"
         exit 1
     fi
 
-    for INDEX in "${INDEXES[@]}"; do
-        wget -P $INDEX_PATH https://files.old-faithful.net/${EPOCH}/epoch-${EPOCH}.car.${EPOCH_CID}.${INDEX}.index
-    done
+    # download gsfa
+    wget -P $OUTDIR https://files.old-faithful.net/${EPOCH}/epoch-${EPOCH}-gsfa.index.tar.bz2
 
     if [ $? -ne 0 ]; then
         echo "Failed to download gsfa at epoch $EPOCH"
         exit 1
     fi
+
+    bzip2 -d $OUTDIR/epoch-${EPOCH}-gsfa.index.tar.bz2
+    tar -xf $OUTDIR/epoch-500-gsfa.index.tar
+
+    # move to indexes folder
+    mv $OUTDIR/storage/car/${EPOCH}/epoch-${EPOCH}.car-$EPOCH_CID-gsfa-index $INDEX_PATH/
 
 done
