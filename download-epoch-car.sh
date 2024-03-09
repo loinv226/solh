@@ -23,8 +23,11 @@ if [ $EPOCH -lt 0 ]; then
     exit 1
 fi
 
+OUTDIR=cars
+mkdir -p $OUTDIR
+
 # Check if wget is available
-DOWNLOAD_COMMAND="wget"
+DOWNLOAD_COMMAND="wget -P $OUTDIR"
 READ_COMMAND="wget -qO-"
 if ! [ -x "$(command -v wget)" ]; then
     # Fallback to curl

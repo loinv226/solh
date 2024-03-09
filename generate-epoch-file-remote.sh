@@ -2,7 +2,7 @@
 
 # Check if there is an epoch number provided
 if [ $# -eq 0 ]; then
-  echo "No epoch number provided"
+  echo "Missing START_EPOCH, END_EPOCH"
   exit 1
 fi
 
