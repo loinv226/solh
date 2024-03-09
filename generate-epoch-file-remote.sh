@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -o pipefail
+
 # Check if there is an epoch number provided
 if [ $# -eq 0 ]; then
   echo "Missing START_EPOCH, END_EPOCH"

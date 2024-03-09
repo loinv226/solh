@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -o pipefail
+
 CAR_PATH=$1
 INDEX_PATH=$2
 

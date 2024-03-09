@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#!/bin/bash
+set -o pipefail
 
 # Check if there is an epoch number provided
 if [ $# -eq 0 ]; then

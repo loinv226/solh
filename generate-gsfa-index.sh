@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -o pipefail
+
 EPOCH=$1
 CAR_PATH=$2
 INDEX_PATH=$3
