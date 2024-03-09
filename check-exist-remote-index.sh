@@ -23,8 +23,8 @@ if ! [[ $END_EPOCH =~ $re ]]; then
 fi
 
 if [ $START_EPOCH -gt $END_EPOCH ]; then
-  echo "START_EPOCH must less than END_EPOCH"
-  exit 1
+    echo "START_EPOCH must less than END_EPOCH"
+    exit 1
 fi
 
 for EPOCH in $(seq $START_EPOCH $END_EPOCH); do
@@ -37,7 +37,7 @@ for EPOCH in $(seq $START_EPOCH $END_EPOCH); do
     INDEX_SIG_URL=https://files.old-faithful.net/${EPOCH}/epoch-${EPOCH}.car.${CID}.sig-to-cid.index
     INDEX_SIGS_FOR_ADDRESS_URL=https://files.old-faithful.net/${EPOCH}/epoch-${EPOCH}.car.${CID}.gsfa.index
 
-    LIST_INDEX=( $INDEX_OFFSET_URL $INDEX_SIG_EXIST_URL $INDEX_SLOT_URL $INDEX_SIG_URL )
+    LIST_INDEX=($INDEX_OFFSET_URL $INDEX_SIG_EXIST_URL $INDEX_SLOT_URL $INDEX_SIG_URL)
     for INDEX in "${LIST_INDEX[@]}"; do
         echo "INDEX: ${INDEX}"
         curl $INDEX
@@ -45,5 +45,3 @@ for EPOCH in $(seq $START_EPOCH $END_EPOCH); do
 done
 
 # Từ epoch 558 chở đi là không có dữ liệu rồi, phải tự download car về để tạo index file
-
-

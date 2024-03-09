@@ -7,8 +7,8 @@ INDEX_PATH=$3
 re='^[0-9]+$'
 
 if ! [[ $EPOCH =~ $re ]]; then
-    echo "Epoch number is not a number"
-    exit 1
+  echo "Epoch number is not a number"
+  exit 1
 fi
 
 if [ -z "$CAR_PATH" ]; then
