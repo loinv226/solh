@@ -71,6 +71,6 @@ for EPOCH in $(seq $START_EPOCH $END_EPOCH); do
     tar -xvf $OUTDIR/epoch-${EPOCH}-gsfa.index.tar
 
     # move to indexes folder
-    mv $OUTDIR/storage/car/${EPOCH}/epoch-${EPOCH}.car-$EPOCH_CID-gsfa-index $INDEX_PATH/
+    mv storage/car/${EPOCH}/epoch-${EPOCH}.car-$EPOCH_CID-gsfa-index $INDEX_PATH/
 
 done
