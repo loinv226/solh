@@ -65,8 +65,10 @@ for EPOCH in $(seq $START_EPOCH $END_EPOCH); do
         exit 1
     fi
 
-    bzip2 -d $OUTDIR/epoch-${EPOCH}-gsfa.index.tar.bz2
-    tar -xf $OUTDIR/epoch-${EPOCH}-gsfa.index.tar
+    echo "unziping..."
+    bzip2 -d -v $OUTDIR/epoch-${EPOCH}-gsfa.index.tar.bz2
+    echo "extract tar file..."
+    tar -xvf $OUTDIR/epoch-${EPOCH}-gsfa.index.tar
 
     # move to indexes folder
     mv $OUTDIR/storage/car/${EPOCH}/epoch-${EPOCH}.car-$EPOCH_CID-gsfa-index $INDEX_PATH/
