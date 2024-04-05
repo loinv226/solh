@@ -43,5 +43,3 @@ for EPOCH in $(seq $START_EPOCH $END_EPOCH); do
         curl $INDEX
     done
 done
-
-# Từ epoch 558 chở đi là không có dữ liệu rồi, phải tự download car về để tạo index file
